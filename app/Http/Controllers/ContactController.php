@@ -11,4 +11,14 @@ class ContactController extends Controller
     {
         return view('contacts.index', ['contacts' => Contact::paginate(10)]);
     }
+    
+    public function create()
+    {
+        return view('contacts.create');
+    }
+
+    public function store(Request $request)
+    {
+        dd('chegou');
+    }
 }
