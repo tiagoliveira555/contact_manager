@@ -1,9 +1,9 @@
-@props(['title', 'name' => null, 'contact' => null, 'email' => null, 'method' => 'post'])
+@props(['title', 'name' => null, 'contact' => null, 'email' => null, 'method' => 'post', 'action' => null])
 
 <div class="mx-auto w-1/2">
     <h1 class="mb-10 text-3xl">{{ $title }}</h1>
 
-    <form class="flex flex-col gap-3" action="{{ route('contacts.store') }}" method="POST">
+    <form class="flex flex-col gap-3" action="{{ $action }}" method="POST">
         @csrf
 
         @if ($method === 'put')
@@ -14,7 +14,7 @@
             <label for="name">Name</label>
             <input type="name" id="name" name="name"
                 class="mt-2 block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="contact name"
-                value="{{ old('name') }}">
+                value="{{ old('name') ?? $name }}">
             @error('name')
                 <span class="text-red-400">{{ $message }}</span>
             @enderror
@@ -24,7 +24,7 @@
             <label for="contact">Contact</label>
             <input type="text" id="contact" name="contact"
                 class="mt-2block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="contact"
-                value="{{ old('contact') }}">
+                value="{{ old('contact') ?? $contact }}">
             @error('contact')
                 <span class="text-red-400">{{ $message }}</span>
             @enderror
@@ -34,7 +34,7 @@
             <label for="email">Email</label>
             <input type="text" id="email" name="email"
                 class="mt-2 block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="email"
-                value="{{ old('email') }}">
+                value="{{ old('email') ?? $email }}">
             @error('email')
                 <span class="text-red-400">{{ $message }}</span>
             @enderror

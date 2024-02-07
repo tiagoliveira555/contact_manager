@@ -35,4 +35,22 @@ class ContactController extends Controller
 
         return redirect(route('contacts.index'));
     }
+    
+    public function edit(Contact $contact)
+    {
+        return view('contacts.edit', compact('contact'));
+    }
+    
+    public function update(Request $request, Contact $contact)
+    {
+        $contactValidated = $request->validate([
+            'name' => ['required', 'min:6', 'max:255'],
+            'contact' => ['required', 'digits:9', Rule::unique('contacts')->ignore($contact->id)],
+            'email' => ['required', 'email', 'max:255', Rule::unique('contacts')->ignore($contact->id)],
+        ]);
+
+        Contact::query()->where('id', $contact->id)->update($contactValidated);
+
+        return redirect(route('contacts.index'));
+    }
 }
