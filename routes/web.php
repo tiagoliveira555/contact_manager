@@ -14,4 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ContactController::class, 'index'])->name('index');
+Route::get('/', function () {
+    return redirect(route('contacts.index'));
+});
+
+Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');

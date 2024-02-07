@@ -9,6 +9,6 @@ class ContactController extends Controller
 {
     public function index()
     {
-        return view('index', ['contacts' => Contact::paginate(10)]);
+        return view('contacts.index', ['contacts' => Contact::paginate(10)]);
     }
 }
