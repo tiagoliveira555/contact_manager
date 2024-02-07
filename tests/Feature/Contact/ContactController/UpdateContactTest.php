@@ -33,4 +33,17 @@ class UpdateContactTest extends TestCase
 
         $response->assertSessionHasErrors(['contact', 'email']);
     }
+    
+    public function test_update_method_passes_with_valid_data()
+    {
+        $existingContact = Contact::factory()->create();
+
+        $response = $this->put(route('contacts.update', ['contact' => $existingContact->id]), [
+            'name' => 'Updated Name',
+            'contact' => '987654321',
+            'email' => 'updated.email@example.com',
+        ]);
+
+        $response->assertSessionHasNoErrors(['name', 'contact', 'email']);
+    }
 }
