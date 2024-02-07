@@ -30,10 +30,10 @@
         </div>
 
         <div>
-            <button type="submit"
+            <a href="{{ route('contacts.edit', ['contact' => $contact->id]) }}"
                 class="mr-4 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-blue-600 px-4 py-3 text-sm font-semibold text-white hover:bg-blue-700 disabled:pointer-events-none disabled:opacity-50">
                 Edit
-            </button>
+            </a>
             <a href="{{ route('contacts.index') }}"
                 class="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent bg-red-500 px-4 py-3 text-sm font-semibold text-white hover:bg-gray-600 disabled:pointer-events-none disabled:opacity-50">
                 Delete
