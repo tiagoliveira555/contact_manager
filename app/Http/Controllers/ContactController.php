@@ -13,6 +13,11 @@ class ContactController extends Controller
         return view('contacts.index', ['contacts' => Contact::paginate(10)]);
     }
     
+    public function show(Contact $contact)
+    {
+        return view('contacts.show', compact('contact'));
+    }
+    
     public function create()
     {
         return view('contacts.create');
