@@ -12,22 +12,32 @@
 
         <div>
             <label for="name">Name</label>
-            <input type="name" id="name" class="mt-2 block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3"
-                placeholder="contact name" value="{{ $name }}">
+            <input type="name" id="name" name="name"
+                class="mt-2 block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="contact name"
+                value="{{ old('name') }}">
+            @error('name')
+                <span class="text-red-400">{{ $message }}</span>
+            @enderror
         </div>
 
         <div>
             <label for="contact">Contact</label>
-            <input type="text" id="contact"
+            <input type="text" id="contact" name="contact"
                 class="mt-2block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="contact"
-                value="{{ $contact }}">
+                value="{{ old('contact') }}">
+            @error('contact')
+                <span class="text-red-400">{{ $message }}</span>
+            @enderror
         </div>
 
         <div>
             <label for="email">Email</label>
-            <input type="text" id="email"
+            <input type="text" id="email" name="email"
                 class="mt-2 block w-full rounded-lg border-gray-200 bg-gray-600 px-4 py-3" placeholder="email"
-                value="{{ $email }}">
+                value="{{ old('email') }}">
+            @error('email')
+                <span class="text-red-400">{{ $message }}</span>
+            @enderror
         </div>
 
         <div>

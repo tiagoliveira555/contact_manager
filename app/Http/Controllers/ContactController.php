@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ContactController extends Controller
 {
@@ -19,6 +20,14 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        dd('chegou');
+        $contactValidated = $request->validate([
+            'name' => ['required', 'min:6', 'max:255'],
+            'contact' => ['required', 'digits:9', Rule::unique('contacts', 'contact')],
+            'email' => ['required', 'email', 'max:255', Rule::unique('contacts', 'email')],
+        ]);
+
+        Contact::query()->create($contactValidated);
+
+        return redirect(route('contacts.index'));
     }
 }
