@@ -17,5 +17,18 @@ class CreateContactTest extends TestCase
 
         $response->assertSessionHasErrors(['name', 'contact', 'email']);
     }
+    
+    public function test_store_method_fails_with_duplicate_data()
+    {
+        $existingContact = Contact::factory()->create();
+
+        $response = $this->post(route('contacts.store'), [
+            'name' => $existingContact->name,
+            'contact' => $existingContact->contact,
+            'email' => $existingContact->email,
+        ]);
+
+        $response->assertSessionHasErrors(['contact', 'email']);
+    }
 
 }
