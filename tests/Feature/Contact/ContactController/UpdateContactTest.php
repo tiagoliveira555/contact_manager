@@ -19,4 +19,18 @@ class UpdateContactTest extends TestCase
 
         $response->assertSessionHasErrors(['name', 'contact', 'email']);
     }
+    
+    public function test_update_method_fails_with_duplicate_data()
+    {
+        $existingContact1 = Contact::factory()->create();
+        $existingContact2 = Contact::factory()->create();
+
+        $response = $this->put(route('contacts.update', ['contact' => $existingContact1->id]), [
+            'name' => $existingContact2->name,
+            'contact' => $existingContact2->contact,
+            'email' => $existingContact2->email,
+        ]);
+
+        $response->assertSessionHasErrors(['contact', 'email']);
+    }
 }
