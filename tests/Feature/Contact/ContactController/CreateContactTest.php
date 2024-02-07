@@ -30,5 +30,15 @@ class CreateContactTest extends TestCase
 
         $response->assertSessionHasErrors(['contact', 'email']);
     }
+    
+    public function test_store_method_passes_with_valid_data()
+    {
+        $response = $this->post(route('contacts.store'), [
+            'name' => 'John Doe',
+            'contact' => '123456789',
+            'email' => 'john.doe@example.com',
+        ]);
 
+        $response->assertSessionHasNoErrors(['name', 'contact', 'email']);
+    }
 }
