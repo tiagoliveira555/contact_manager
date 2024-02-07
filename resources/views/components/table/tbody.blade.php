@@ -12,7 +12,7 @@
             
             <a href="{{ route('contacts.edit', ['contact' => $id]) }}"
                 class="mr-3 inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-blue-600 hover:text-blue-800 disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Edit</a>
-            <a href=""
+            <a href="{{ route('contacts.delete', ['contact' => $id]) }}"
                 class="inline-flex cursor-pointer items-center gap-x-2 rounded-lg border border-transparent text-sm font-semibold text-blue-600 hover:text-blue-800 disabled:pointer-events-none disabled:opacity-50 dark:text-blue-500 dark:hover:text-blue-400 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">Delete</a>
         </td>
     </tr>

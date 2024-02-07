@@ -53,4 +53,16 @@ class ContactController extends Controller
 
         return redirect(route('contacts.index'));
     }
+    
+    public function delete(Contact $contact)
+    {
+        return view('contacts.delete', compact('contact'));
+    }
+
+    public function destroy(Contact $contact)
+    {
+        Contact::query()->where('id', $contact->id)->delete();
+
+        return redirect(route('contacts.index'));
+    }
 }
